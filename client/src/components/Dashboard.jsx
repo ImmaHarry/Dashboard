@@ -1,94 +1,117 @@
 import React from "react";
-import GaugeChart from "./GaugeChart";
 import LineChart from "./LineChart";
 import StatsCard from "./StatsCard";
 
 const Dashboard = () => {
-    // Example data for file accuracy comparison
-    const fileAccuracyComparison = {
-        files: [
-            { name: "File 1", accuracy: 20 },
-            { name: "File 2", accuracy: 85 },
-            { name: "File 3", accuracy: 75 },
-        ],
-    };
+  return (
+    <div className="h-screen w-full bg-black text-white p-4 flex flex-col ">
+      {/* Top Bar: Dashboard Overview in One Line */}
+      <div className="flex justify-between items-center w-full mb-2">
+        <h2 className="text-xl font-bold">Dashboard Overview</h2>
 
-    // Preparing data for the file accuracy chart
-    const fileLabels = fileAccuracyComparison.files.map((file, index) => `File ${index + 1}`);
-    const fileDatasets = [
-        {
-            label: "Accuracy",
-            data: fileAccuracyComparison.files.map((file) => file.accuracy),
-            borderColor: "#3b82f6",
-        },
-    ];
-
-    // Example data for question-wise accuracy
-    const questionWiseAccuracy = [
-        { question_number: 1, file1: 80, file2: 90, file3: 30 },
-        { question_number: 2, file1: 95, file2: 85, file3: 85 },
-        { question_number: 3, file1: 70, file2: 75, file3: 65 },
-        { question_number: 4, file1: 85, file2: 90, file3: 75 },
-        { question_number: 5, file1: 90, file2: 80, file3: 85 },
-    ];
-
-    // Preparing data for the question-wise accuracy chart
-    const questionLabels = questionWiseAccuracy.map((q) => `Q${q.question_number}`);
-    const questionDatasets = [
-        {
-            label: "File 1",
-            data: questionWiseAccuracy.map((q) => q.file1),
-            borderColor: "#3b82f6",
-        },
-        {
-            label: "File 2",
-            data: questionWiseAccuracy.map((q) => q.file2),
-            borderColor: "#ef4444",
-        },
-        {
-            label: "File 3",
-            data: questionWiseAccuracy.map((q) => q.file3),
-            borderColor: "#22c55e",
-        },
-    ];
-
-    return (
-        <div className="pt-16 px-6 flex flex-col space-y-6">
-            {/* Top Section */}
-            <div className="grid grid-cols-4 gap-4">
-                <StatsCard
-                    title="Test Statistics"
-                    details={[
-                        "Total Tests: 60",
-                        "Test Cases: 5",
-                        "Paraphrased: 3",
-                        "Iterations: 4",
-                        "Passed: 42",
-                        "Failed: 17",
-                    ]}
-                />
-                <GaugeChart />
-                <StatsCard title="Hallucination Rate" value="32.0%" textColor="text-red-500" />
-                <StatsCard title="LLM Drift Rate" value="17.0%" textColor="text-green-500" />
-                <StatsCard title="Custom Metric 1" value="91.0%" textColor="text-red-500" />
-                <StatsCard title="Custom Metric 2" value="97.0%" textColor="text-red-500" />
-            </div>
-
-            {/* Bottom Graph Section */}
-            <div className="grid grid-cols-2 gap-6">
-                <LineChart
-                    title="Accuracy Comparison Across Files"
-                    labels={fileLabels}
-                    datasets={fileDatasets}
-                />
-                <LineChart
-                    title="Question-wise Accuracy Comparison"
-                    labels={questionLabels}
-                    datasets={questionDatasets}
-                />
-            </div>
+        {/* Smaller Inputs */}
+        <div className="flex items-center space-x-2">
+          <input
+            type="date"
+            className="bg-gray-800 text-white px-2 py-1 text-xs rounded-md"
+          />
+          <select className="bg-gray-800 text-white px-2 py-1 text-xs rounded-md">
+            <option>Daily</option>
+            <option>Weekly</option>
+            <option>Monthly</option>
+          </select>
+          <button className="bg-blue-500 px-2 py-1 text-xs rounded-md text-white">
+            Export CSV
+          </button>
         </div>
-    );
+      </div>
+
+      {/* Greeting Message */}
+      <h1 className="text-2xl font-bold mb-4">Good Evening, John Doe!</h1>
+
+      {/* Main Container */}
+      <div className="flex space-x-4">
+        {/* Left Section - Stats and Metrics */}
+        <div className="w-1/3 flex flex-col space-y-4">
+          <StatsCard
+            title="Total Tests Conducted"
+            value="60"
+            isProgressBar={true}
+            details={[
+              "Passed: 43",
+              "Failed: 17",
+              "Test Cases: 5",
+              "Paraphrased: 3",
+              "Iterations: 4",
+            ]}
+          />
+
+          {/* Model Metrics */}
+          <div className="text-white text-lg font-bold">Model Metrics</div>
+          <div className="grid grid-cols-2 gap-2">
+            <StatsCard title="Hallucination" value={32} isCircular={true} />
+            <StatsCard title="LLM Drift Rate" value={17} isCircular={true} />
+          </div>
+
+          {/* Custom Metrics */}
+          <div className="text-white text-lg font-bold">Custom Metrics</div>
+          <div className="grid grid-cols-2 gap-2">
+            <StatsCard title="Metric 1" value={91} isCircular={true} />
+            <StatsCard title="Metric 2" value={97} isCircular={true} />
+          </div>
+        </div>
+
+        {/* Right Section - Graphs in Same Container */}
+        <div className="w-2/3 bg-gray-800 p-4 rounded-lg">
+          <div className="text-white text-lg font-bold mb-2">
+            Accuracy Comparison Data:
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <LineChart
+              title="Across Files"
+              labels={["File 1", "File 2", "File 3"]}
+              datasets={[
+                {
+                  label: "Accuracy",
+                  data: [20, 85, 75],
+                  borderColor: "#3b82f6",
+                },
+              ]}
+              height={150} // Reduce graph size
+            />
+            <LineChart
+              title="Question wise"
+              labels={["Q1", "Q2", "Q3", "Q4", "Q5"]}
+              datasets={[
+                {
+                  label: "File 1",
+                  data: [80, 95, 70, 85, 90],
+                  borderColor: "#3b82f6",
+                },
+                {
+                  label: "File 2",
+                  data: [90, 85, 75, 90, 80],
+                  borderColor: "#ef4444",
+                },
+                {
+                  label: "File 3",
+                  data: [30, 85, 65, 75, 85],
+                  borderColor: "#22c55e",
+                },
+              ]}
+              height={150} // Reduce graph size
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Previous Tests Section - Directly Below Graphs */}
+      <div className="w-full bg-gray-800 p-4 rounded-lg mt-4">
+        <h2 className="text-lg font-bold mb-2">Previous Tests</h2>
+        <div className="text-gray-400">No previous tests available.</div>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;
