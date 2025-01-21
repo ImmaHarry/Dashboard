@@ -4,19 +4,19 @@ import { MdMonitorHeart } from "react-icons/md";
 import { FaGear } from "react-icons/fa6";
 import { IoMdLogOut } from "react-icons/io";
 import { LuGauge } from "react-icons/lu";
-        import { MdHistory } from "react-icons/md"; // Import the new icon
+import { MdHistory } from "react-icons/md"; // Import the new icon
 
-        const Sidebar = ({ activeTab,setActiveTab }) => {
-          const [collapsed, setCollapsed] = useState(false);
-        
-          return (
-            <div
-              className={`flex flex-col bg-zinc-900 border-r border-zinc-800 text-white h-screen ${
-                collapsed ? "w-24" : "w-64"
-              } transition-all duration-300`}
-            >
-              {/* Logo and Collapse Toggle */}
-              <div className="flex items-center justify-between p-4 border-b border-zinc-800">
+const Sidebar = ({ activeTab, setActiveTab }) => {
+  const [collapsed, setCollapsed] = useState(false);
+
+  return (
+    <div
+      className={`flex flex-col bg-zinc-900 z-50 border-r border-zinc-800 text-white h-screen ${
+        collapsed ? "w-24" : "w-64"
+      } transition-all duration-300`}
+    >
+      {/* Logo and Collapse Toggle */}
+      <div className="flex items-center justify-between p-4 border-b border-zinc-800">
         {/* Placeholder for Logo SVG */}
         <div className="flex items-center">
           <svg
@@ -96,8 +96,10 @@ import { LuGauge } from "react-icons/lu";
         )}
         <ul className="p-2">
           <li
-            className={`px-4 py-3 rounded-md cursor-pointer ${
-              activeTab === "Overview" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            className={`px-4 py-3 rounded-md cursor-pointer mb-2 ${
+              activeTab === "Overview"
+                ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]"
+                : "hover:bg-gray-800"
             }`}
             onClick={() => setActiveTab("Overview")}
           >
@@ -106,7 +108,7 @@ import { LuGauge } from "react-icons/lu";
                 <BsGraphUp className="text-2xl" />
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-2xl">
+              <span className="flex items-center gap-x-2 text-xl">
                 <BsGraphUp className="text-xl" />
                 Overview
               </span>
@@ -114,25 +116,29 @@ import { LuGauge } from "react-icons/lu";
           </li>
 
           <li
-            className={`px-4 py-3 rounded-md cursor-pointer ${
-              activeTab === "Previous Results" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            className={`px-4 py-3 rounded-md cursor-pointer mb-2 ${
+              activeTab === "Previous Results"
+                ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]"
+                : "hover:bg-gray-800"
             }`}
             onClick={() => setActiveTab("Previous Results")}
           >
             {collapsed ? (
               <div className="w-10 h-10 flex items-center justify-center rounded-full">
-                <MdHistory  className="text-2xl"/>
+                <MdHistory className="text-2xl" />
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-2xl">
+              <span className="flex items-center gap-x-2 text-xl">
                 <MdHistory /> Previous Results
               </span>
             )}
           </li>
 
           <li
-            className={`px-4 py-3 rounded-md cursor-pointer ${
-              activeTab === "Monitoring" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            className={`px-4 py-3 rounded-md cursor-pointer mb-2 ${
+              activeTab === "Monitoring"
+                ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]"
+                : "hover:bg-gray-800"
             }`}
             onClick={() => setActiveTab("Monitoring")}
           >
@@ -141,30 +147,52 @@ import { LuGauge } from "react-icons/lu";
                 <MdMonitorHeart className="text-2xl" />
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-2xl">
+              <span className="flex items-center gap-x-2 text-xl">
                 <MdMonitorHeart /> Monitoring
               </span>
             )}
           </li>
 
           <li
-            className={`px-4 py-3 rounded-md cursor-pointer ${
-              activeTab === "Metrics" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            className={`px-4 py-3 rounded-md cursor-pointer mb-2 ${
+              activeTab === "Metrics"
+                ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]"
+                : "hover:bg-gray-800"
             }`}
             onClick={() => setActiveTab("Metrics")}
           >
             {collapsed ? (
               <div className="w-10 h-10 flex items-center justify-center rounded-full">
-                <LuGauge className="text-2xl"/>
+                <LuGauge className="text-2xl" />
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-2xl">
+              <span className="flex items-center gap-x-2 text-xl">
                 <LuGauge /> Metrics
               </span>
             )}
           </li>
         </ul>
       </nav>
+
+      {/* Logout and Settings */}
+      <div className="p-4 border-t border-zinc-800">
+        <ul className="flex flex-col gap-y-3">
+          <li
+            className="flex items-center gap-x-2 text-xl cursor-pointer hover:bg-gray-800 p-3 rounded-md"
+            onClick={() => console.log("Settings Clicked")}
+          >
+            <FaGear />
+            {!collapsed && <span>Settings</span>}
+          </li>
+          <li
+            className="flex items-center gap-x-2 text-xl cursor-pointer hover:bg-gray-800 p-3 rounded-md"
+            onClick={() => console.log("Logout Clicked")}
+          >
+            <IoMdLogOut />
+            {!collapsed && <span>Logout</span>}
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

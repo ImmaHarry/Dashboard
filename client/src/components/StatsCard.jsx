@@ -9,8 +9,8 @@ const StatsCard = ({
 }) => {
   return (
     <div className="bg-gray-800 p-6 rounded-lg shadow-md flex flex-col items-center space-y-4 w-full">
-      {/* Heading on Top */}
       <h3 className="text-xl font-medium text-gray-300 w-full text-left">
+        {/* Card Title */}
         {title}
       </h3>
 
