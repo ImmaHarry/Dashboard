@@ -14,20 +14,20 @@ const Dashboard = () => {
         {/* Actions */}
         <div className="flex items-center space-x-2">
           {/* Date Picker */}
-          <div className="flex items-center bg-gray-800 text-gray-400 px-3 py-1 rounded-md space-x-2">
+          <div className="flex items-center bg-gray-800 h-8 text-gray-400 px-3 py-1 rounded-md space-x-2">
             <FaCalendarAlt className="text-gray-500" />
             <span className="text-sm">21/12/2024 - 21/01/2025</span>
           </div>
 
           {/* Filter Dropdown */}
-          <select className="bg-gray-800 text-gray-400 px-3 py-1 text-sm rounded-md focus:outline-none">
+          <select className="bg-gray-800 text-gray-400 px-3 py-1 h-8 text-sm rounded-md focus:outline-none">
             <option>Daily</option>
             <option>Weekly</option>
             <option>Monthly</option>
           </select>
 
           {/* Export Button */}
-          <button className="bg-blue-500 text-sm text-white px-3 py-1 rounded-md flex items-center space-x-2">
+          <button className="bg-blue-500 text-sm text-white px-3 py-1 h-8 rounded-md flex items-center space-x-2">
             <FaDownload />
             <span>Export as CSV</span>
           </button>
