@@ -1,5 +1,6 @@
 import React from "react";
 import LineChart from "./LineChart";
+import CircularInfo from "./CircularInformation";
 import StatsCard from "./StatsCard";
 import { FaCalendarAlt, FaDownload } from "react-icons/fa";
 
@@ -65,15 +66,15 @@ const Dashboard = () => {
           {/* Model Metrics */}
           <div className="text-white text-xl font-bold">Model Metrics</div>
           <div className="grid grid-cols-2 gap-2">
-            <StatsCard title="Hallucination" value={32} isCircular={true} />
-            <StatsCard title="LLM Drift Rate" value={17} isCircular={true} />
+            <CircularInfo title="Hallucination" value={32} isCircular={true} />
+            <CircularInfo title="LLM Drift Rate" value={17} isCircular={true} />
           </div>
 
           {/* Custom Metrics */}
           <div className="text-white text-xl font-bold">Custom Metrics</div>
           <div className="grid grid-cols-2 gap-2">
-            <StatsCard title="Metric 1" value={91} isCircular={true} />
-            <StatsCard title="Metric 2" value={97} isCircular={true} />
+            <CircularInfo title="Metric 1" value={91} isCircular={true} />
+            <CircularInfo title="Metric 2" value={97} isCircular={true} />
           </div>
         </div>
 
