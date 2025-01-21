@@ -6,7 +6,7 @@ import { FaCalendarAlt, FaDownload } from "react-icons/fa";
 
 const Dashboard = () => {
   return (
-    <div className="h-screen w-full bg-black text-white p-4 flex flex-col">
+    <div className="h-fit w-full bg-opacity-75 text-white p-4 flex flex-col">
       {/* Top Bar */}
       <div className="flex items-center justify-between w-full mb-4">
         {/* Title */}
@@ -49,7 +49,7 @@ const Dashboard = () => {
       {/* Main Container */}
       <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0 lg:space-x-4">
         {/* Left Section - Stats and Metrics */}
-        <div className="w-full lg:w-1/3 flex flex-col space-y-4">
+        <div className="w-full lg:w-[45%] flex flex-col space-y-4">
           <StatsCard
             title="Total Tests Conducted"
             value="60"
@@ -79,11 +79,13 @@ const Dashboard = () => {
         </div>
 
         {/* Right Section - Graphs */}
-        <div className="w-full lg:w-2/3 bg-gray-800 p-4 rounded-lg">
-          <div className="text-white text-lg font-bold mb-2">
+        <div className="w-full lg:w-[55%] bg-gray-800 p-4 rounded-lg max-h-screen">
+          <div className="text-gray-300 text-2xl font-semibold mb-4">
             Accuracy Comparison Data:
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          {/* Two Line Charts Side by Side */}
+          <div className="grid grid-cols-2 gap-4 items-center justify-center">
+            {/* Line Chart 1 */}
             <LineChart
               title="Across Files"
               labels={["File 1", "File 2", "File 3"]}
@@ -94,10 +96,10 @@ const Dashboard = () => {
                   borderColor: "#3b82f6",
                 },
               ]}
-              height={150} // Reduce graph size
             />
+            {/* Line Chart 2 */}
             <LineChart
-              title="Question wise"
+              title="Question-wise"
               labels={["Q1", "Q2", "Q3", "Q4", "Q5"]}
               datasets={[
                 {
@@ -116,16 +118,9 @@ const Dashboard = () => {
                   borderColor: "#22c55e",
                 },
               ]}
-              height={150} // Reduce graph size
             />
           </div>
         </div>
-      </div>
-
-      {/* Previous Tests Section */}
-      <div className="w-full bg-gray-800 p-4 rounded-lg mt-4">
-        <h2 className="text-lg font-bold mb-2">Previous Tests</h2>
-        <div className="text-gray-400">No previous tests available.</div>
       </div>
     </div>
   );
