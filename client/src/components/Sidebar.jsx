@@ -4,24 +4,19 @@ import { MdMonitorHeart } from "react-icons/md";
 import { FaGear } from "react-icons/fa6";
 import { IoMdLogOut } from "react-icons/io";
 import { LuGauge } from "react-icons/lu";
+        import { MdHistory } from "react-icons/md"; // Import the new icon
 
-const Sidebar = () => {
-  const [collapsed, setCollapsed] = useState(false);
-
-  return (
-    <div
-      className={`flex flex-col bg-zinc-900
-        border-r border-zinc-800
-         text-white h-screen ${
-           collapsed ? "w-24" : "w-64"
-         } transition-all duration-300`}
-    >
-      {/* Logo and Collapse Toggle */}
-      <div
-        className="flex items-center justify-between p-4
-      border-b border-zinc-800
-      "
-      >
+        const Sidebar = ({ activeTab,setActiveTab }) => {
+          const [collapsed, setCollapsed] = useState(false);
+        
+          return (
+            <div
+              className={`flex flex-col bg-zinc-900 border-r border-zinc-800 text-white h-screen ${
+                collapsed ? "w-24" : "w-64"
+              } transition-all duration-300`}
+            >
+              {/* Logo and Collapse Toggle */}
+              <div className="flex items-center justify-between p-4 border-b border-zinc-800">
         {/* Placeholder for Logo SVG */}
         <div className="flex items-center">
           <svg
@@ -74,174 +69,102 @@ const Sidebar = () => {
           onClick={() => setCollapsed(!collapsed)}
           className="bg-none w-8 h-8 flex items-center justify-center rounded-md ml-4"
         >
-          <div>
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 17 17"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M14.3333 1H2.66667C1.74619 1 1 1.74619 1 2.66667V14.3333C1 15.2538 1.74619 16 2.66667 16H14.3333C15.2538 16 16 15.2538 16 14.3333V2.66667C16 1.74619 15.2538 1 14.3333 1Z"
-                stroke="#5A5A5A"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                d="M6 1V16"
-                stroke="#5A5A5A"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </div>{" "}
-          {/* Placeholder for Collapse Icon */}
+          <svg width="17" height="17" viewBox="0 0 17 17" fill="none">
+            <path
+              d="M14.3333 1H2.66667C1.74619 1 1 1.74619 1 2.66667V14.3333C1 15.2538 1.74619 16 2.66667 16H14.3333C15.2538 16 16 15.2538 16 14.3333V2.66667C16 1.74619 15.2538 1 14.3333 1Z"
+              stroke="#5A5A5A"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M6 1V16"
+              stroke="#5A5A5A"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
       </div>
 
       {/* Menu Items */}
+
       <nav className="flex-1 mt-6">
-        {collapsed ? null : (
-          <span
-            className="
-          text-gray-400 ml-4
-          text-xs text-left capitalize
-          block font-medium
-        "
-          >
+        {!collapsed && (
+          <span className="text-gray-400 ml-4 text-xs text-left capitalize block font-medium">
             MAIN FEATURES
           </span>
         )}
-        <ul
-          className="
-            p-2
-        "
-        >
-          <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer bg-[#1E88E5] bg-opacity-15 rounded-md text-[#1E88E5] font-semibold">
+        <ul className="p-2">
+          <li
+            className={`px-4 py-3 rounded-md cursor-pointer ${
+              activeTab === "Overview" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            }`}
+            onClick={() => setActiveTab("Overview")}
+          >
             {collapsed ? (
-              <div
-                className="
-                bg-[#1E88E5]
-                w-8 h-8 flex items-center justify-center rounded-full
-                bg-opacity-25
-              "
-              >
-                <BsGraphUp
-                  className="
-                text-[#1E88E5]
-                "
-                ></BsGraphUp>
+              <div className="w-8 h-8 flex items-center justify-center rounded-full bg-opacity-25">
+                <BsGraphUp className="text-[#1E88E5]" />
               </div>
             ) : (
-              <span
-                className="
-                flex items-center gap-x-2 text-xl
-              "
-              >
-                <BsGraphUp
-                  className="
-                    text-[#1E88E5]
-                    text-xl
-                    "
-                ></BsGraphUp>
+              <span className="flex items-center gap-x-2 text-xl">
+                <BsGraphUp className="text-xl" />
                 Overview
               </span>
             )}
           </li>
+
           <li
-            className="
-            px-4 py-3 hover:bg-gray-800 cursor-pointer
-            rounded-md mt-2
-          "
+            className={`px-4 py-3 rounded-md cursor-pointer ${
+              activeTab === "Previous Results" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            }`}
+            onClick={() => setActiveTab("Previous Results")}
           >
             {collapsed ? (
-              <div
-                className="
-                bg-gray-700
-                w-8 h-8 flex items-center justify-center rounded-full
-              "
-              >
-                <MdMonitorHeart></MdMonitorHeart>
+              <div className="w-8 h-8 flex items-center justify-center rounded-full">
+                <MdHistory />
               </div>
             ) : (
-              <span
-                className="
-                flex items-center gap-x-2 text-xl
-              "
-              >
-                <MdMonitorHeart></MdMonitorHeart> Monitoring
+              <span className="flex items-center gap-x-2 text-xl">
+                <MdHistory /> Previous Results
               </span>
             )}
           </li>
+
           <li
-            className="
-            px-4 py-3 hover:bg-gray-800 cursor-pointer
-            rounded-md mt-2
-          "
+            className={`px-4 py-3 rounded-md cursor-pointer ${
+              activeTab === "Monitoring" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            }`}
+            onClick={() => setActiveTab("Monitoring")}
           >
             {collapsed ? (
-              <div
-                className="
-                bg-gray-700
-                w-8 h-8 flex items-center justify-center rounded-full
-              "
-              >
-                <LuGauge></LuGauge>
+              <div className="w-8 h-8 flex items-center justify-center rounded-full">
+                <MdMonitorHeart />
               </div>
             ) : (
-              <span
-                className="
-                flex items-center gap-x-2 text-xl
-              "
-              >
-                <LuGauge></LuGauge> Metrics
+              <span className="flex items-center gap-x-2 text-xl">
+                <MdMonitorHeart /> Monitoring
+              </span>
+            )}
+          </li>
+
+          <li
+            className={`px-4 py-3 rounded-md cursor-pointer ${
+              activeTab === "Metrics" ? "bg-[#1E88E5] bg-opacity-25 text-[#1E88E5]" : "hover:bg-gray-800"
+            }`}
+            onClick={() => setActiveTab("Metrics")}
+          >
+            {collapsed ? (
+              <div className="w-8 h-8 flex items-center justify-center rounded-full">
+                <LuGauge />
+              </div>
+            ) : (
+              <span className="flex items-center gap-x-2 text-xl">
+                <LuGauge /> Metrics
               </span>
             )}
           </li>
         </ul>
       </nav>
-
-      {/* Bottom Section */}
-      <div className="p-4 mt-auto">
-        <ul>
-          <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer">
-            {collapsed ? (
-              <div
-                className="
-              bg-gray-700
-              w-8 h-8 flex items-center justify-center rounded-full
-              "
-              >
-                <FaGear></FaGear>
-              </div>
-            ) : (
-              <span
-                className="
-              flex items-center gap-x-2 text-xl
-              "
-              >
-                <FaGear></FaGear> Settings
-              </span>
-            )}
-          </li>
-          <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer">
-            {collapsed ? (
-              <div className="bg-gray-700 w-8 h-8 flex items-center justify-center rounded-full">
-                <IoMdLogOut></IoMdLogOut>
-              </div>
-            ) : (
-              <span
-                className="
-              flex items-center gap-x-2 text-xl
-              "
-              >
-                <IoMdLogOut></IoMdLogOut> Logout
-              </span>
-            )}
-          </li>
-        </ul>
-      </div>
     </div>
   );
 };
