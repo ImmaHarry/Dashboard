@@ -102,11 +102,11 @@ import { LuGauge } from "react-icons/lu";
             onClick={() => setActiveTab("Overview")}
           >
             {collapsed ? (
-              <div className="w-8 h-8 flex items-center justify-center rounded-full bg-opacity-25">
-                <BsGraphUp className="text-[#1E88E5]" />
+              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-opacity-25">
+                <BsGraphUp className="text-2xl" />
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-xl">
+              <span className="flex items-center gap-x-2 text-2xl">
                 <BsGraphUp className="text-xl" />
                 Overview
               </span>
@@ -120,11 +120,11 @@ import { LuGauge } from "react-icons/lu";
             onClick={() => setActiveTab("Previous Results")}
           >
             {collapsed ? (
-              <div className="w-8 h-8 flex items-center justify-center rounded-full">
-                <MdHistory />
+              <div className="w-10 h-10 flex items-center justify-center rounded-full">
+                <MdHistory  className="text-2xl"/>
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-xl">
+              <span className="flex items-center gap-x-2 text-2xl">
                 <MdHistory /> Previous Results
               </span>
             )}
@@ -137,11 +137,11 @@ import { LuGauge } from "react-icons/lu";
             onClick={() => setActiveTab("Monitoring")}
           >
             {collapsed ? (
-              <div className="w-8 h-8 flex items-center justify-center rounded-full">
-                <MdMonitorHeart />
+              <div className="w-10 h-10 flex items-center justify-center rounded-full">
+                <MdMonitorHeart className="text-2xl" />
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-xl">
+              <span className="flex items-center gap-x-2 text-2xl">
                 <MdMonitorHeart /> Monitoring
               </span>
             )}
@@ -154,11 +154,11 @@ import { LuGauge } from "react-icons/lu";
             onClick={() => setActiveTab("Metrics")}
           >
             {collapsed ? (
-              <div className="w-8 h-8 flex items-center justify-center rounded-full">
-                <LuGauge />
+              <div className="w-10 h-10 flex items-center justify-center rounded-full">
+                <LuGauge className="text-2xl"/>
               </div>
             ) : (
-              <span className="flex items-center gap-x-2 text-xl">
+              <span className="flex items-center gap-x-2 text-2xl">
                 <LuGauge /> Metrics
               </span>
             )}
