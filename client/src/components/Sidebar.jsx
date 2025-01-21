@@ -1,5 +1,9 @@
 ﻿import React, { useState } from "react";
 import { BsGraphUp } from "react-icons/bs";
+import { MdMonitorHeart } from "react-icons/md";
+import { FaGear } from "react-icons/fa6";
+import { IoMdLogOut } from "react-icons/io";
+import { LuGauge } from "react-icons/lu";
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -98,6 +102,17 @@ const Sidebar = () => {
 
       {/* Menu Items */}
       <nav className="flex-1 mt-6">
+        {collapsed ? null : (
+          <span
+            className="
+          text-gray-400 ml-4
+          text-xs text-left capitalize
+          block font-medium
+        "
+          >
+            MAIN FEATURES
+          </span>
+        )}
         <ul
           className="
             p-2
@@ -105,7 +120,13 @@ const Sidebar = () => {
         >
           <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer bg-[#1E88E5] bg-opacity-15 rounded-md text-[#1E88E5] font-semibold">
             {collapsed ? (
-              <div className="bg-gray-700 w-8 h-8 flex items-center justify-center rounded-full">
+              <div
+                className="
+                bg-[#1E88E5]
+                w-8 h-8 flex items-center justify-center rounded-full
+                bg-opacity-25
+              "
+              >
                 <BsGraphUp
                   className="
                 text-[#1E88E5]
@@ -128,16 +149,56 @@ const Sidebar = () => {
               </span>
             )}
           </li>
-          <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer">
+          <li
+            className="
+            px-4 py-3 hover:bg-gray-800 cursor-pointer
+            rounded-md mt-2
+          "
+          >
             {collapsed ? (
-              <div className="bg-gray-700 w-8 h-8 flex items-center justify-center rounded-full">
-                M
+              <div
+                className="
+                bg-gray-700
+                w-8 h-8 flex items-center justify-center rounded-full
+              "
+              >
+                <MdMonitorHeart></MdMonitorHeart>
               </div>
             ) : (
-              <span>Menu Item 2</span>
+              <span
+                className="
+                flex items-center gap-x-2 text-xl
+              "
+              >
+                <MdMonitorHeart></MdMonitorHeart> Monitoring
+              </span>
             )}
           </li>
-          {/* Add more menu items as needed */}
+          <li
+            className="
+            px-4 py-3 hover:bg-gray-800 cursor-pointer
+            rounded-md mt-2
+          "
+          >
+            {collapsed ? (
+              <div
+                className="
+                bg-gray-700
+                w-8 h-8 flex items-center justify-center rounded-full
+              "
+              >
+                <LuGauge></LuGauge>
+              </div>
+            ) : (
+              <span
+                className="
+                flex items-center gap-x-2 text-xl
+              "
+              >
+                <LuGauge></LuGauge> Metrics
+              </span>
+            )}
+          </li>
         </ul>
       </nav>
 
@@ -146,20 +207,37 @@ const Sidebar = () => {
         <ul>
           <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer">
             {collapsed ? (
-              <div className="bg-gray-700 w-8 h-8 flex items-center justify-center rounded-full">
-                S
+              <div
+                className="
+              bg-gray-700
+              w-8 h-8 flex items-center justify-center rounded-full
+              "
+              >
+                <FaGear></FaGear>
               </div>
             ) : (
-              <span>Settings</span>
+              <span
+                className="
+              flex items-center gap-x-2 text-xl
+              "
+              >
+                <FaGear></FaGear> Settings
+              </span>
             )}
           </li>
           <li className="px-4 py-3 hover:bg-gray-800 cursor-pointer">
             {collapsed ? (
               <div className="bg-gray-700 w-8 h-8 flex items-center justify-center rounded-full">
-                L
+                <IoMdLogOut></IoMdLogOut>
               </div>
             ) : (
-              <span>Logout</span>
+              <span
+                className="
+              flex items-center gap-x-2 text-xl
+              "
+              >
+                <IoMdLogOut></IoMdLogOut> Logout
+              </span>
             )}
           </li>
         </ul>
