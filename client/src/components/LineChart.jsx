@@ -1,32 +1,32 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, PointElement } from "chart.js";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const LineChart = ({ title }) => {
-    const data = {
-        labels: ["1", "2", "3", "4", "5"],
-        datasets: [
-            {
-                label: "File 1",
-                data: [30, 50, 80, 60, 90],
-                borderColor: "#3b82f6",
-                fill: false,
-            },
-            {
-                label: "File 2",
-                data: [20, 40, 70, 55, 85],
-                borderColor: "#ef4444",
-                fill: false,
-            },
-        ],
+const LineChart = ({ title, labels, datasets }) => {
+    // Fallback message if data is not provided
+    if (!labels || !datasets || datasets.length === 0) {
+        return <p>No data available to render the chart.</p>;
+    }
+
+    // Prepare the data object for the chart
+    const chartData = {
+        labels,
+        datasets: datasets.map((dataset) => ({
+            label: dataset.label,
+            data: dataset.data,
+            borderColor: dataset.borderColor || "#3b82f6",
+            borderWidth: 2,
+            pointRadius: 4,
+            fill: false,
+        })),
     };
 
     return (
         <div className="bg-gray-800 p-4 rounded-lg">
             <h2 className="text-lg font-bold mb-2">{title}</h2>
-            <Line data={data} />
+            <Line data={chartData} />
         </div>
     );
 };
